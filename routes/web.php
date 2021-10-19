@@ -25,6 +25,8 @@ Route::get('/test2', function () {
 
 Route::get('/test', [PostController::class, 'test']);
 
+Route::get('/articles', [PostController::class, 'index']);
+
 /*
 Route::get('/test', function () {
     // var_dump(value: 'test');
