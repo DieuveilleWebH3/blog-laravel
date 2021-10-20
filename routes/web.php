@@ -25,7 +25,17 @@ Route::get('/test2', function () {
 
 Route::get('/test', [PostController::class, 'test']);
 
-Route::get('/articles', [PostController::class, 'index']);
+Route::get('/articles', [PostController::class, 'index'])->name('articleList');
+
+# Route::get('/articles/{{$id}}/detail', [PostController::class, 'detail']);
+Route::get('/articles/{id}', [PostController::class, 'detail'])->name('articleDetail');
+
+Route::get('create', [PostController::class, 'create'])->name('articleCreate');
+Route::post('store', [PostController::class, 'store'])->name('articleStore');
+
+Route::put('article/{id}/update', [PostController::class, 'update'])->name('articleUpdate');
+Route::delete('/delete/{id}', [PostController::class, 'delete'])->name('articleDelete');
+
 
 /*
 Route::get('/test', function () {
