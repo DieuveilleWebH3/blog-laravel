@@ -12,7 +12,7 @@
         @endif
 
         <div class="form-group">
-            <form method="post" action="{{ route('articleStore')}}">
+            <form method="post" action="{{ route('articleStore')}}" enctype="multipart/form-data">
 
                 @csrf
 
@@ -28,7 +28,12 @@
 
                 <div class="form-group">
                     <label for="description"> Description </label>
-                    <textarea rows="5" id="description" name="description" value="{{old('description')}}" class="form-control" required></textarea>
+                    <textarea rows="5" id="description" name="description" class="form-control" required>{{old('description')}}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="picture"> Image </label>
+                    <input type="file" id="picture" name="picture" class="form-control" accept="image/*" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Add blog</button>

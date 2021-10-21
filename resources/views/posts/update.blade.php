@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        <h1> Deatil of {{$post->title}}</h1>
+        <h1> Detail of {{$post->title}}</h1>
 
     </div>
 
@@ -16,7 +16,7 @@
         @endif
 
         <div class="form-group">
-            <form method="post" action="{{ route('articleUpdate')}}">
+            <form method="post" action="{{ route('articleUpdate', $post->id)}}">
 
                 @csrf
                 @method('PUT')
@@ -33,7 +33,7 @@
 
                 <div class="form-group">
                     <label for="description"> Description </label>
-                    <textarea rows="5" id="description" name="description" value="{{old('description', $post->description)}}" class="form-control" required></textarea>
+                    <textarea rows="5" id="description" name="description" class="form-control" required>{{old('description', $post->description)}}</textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Update blog</button>

@@ -33,7 +33,9 @@ Route::get('/articles/{id}', [PostController::class, 'detail'])->name('articleDe
 Route::get('create', [PostController::class, 'create'])->name('articleCreate');
 Route::post('store', [PostController::class, 'store'])->name('articleStore');
 
+Route::get('article/{id}/update', [PostController::class, 'showUpdate'])->name('articleShowUpdate');
 Route::put('article/{id}/update', [PostController::class, 'update'])->name('articleUpdate');
+
 Route::delete('/delete/{id}', [PostController::class, 'delete'])->name('articleDelete');
 
 

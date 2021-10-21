@@ -12,7 +12,7 @@ class Post extends Model
     protected $table = "posts";
 
     // the fields to be used / modified
-    protected $fillable = ['title', 'description','extrait'];
+    protected $fillable = ['title', 'extrait', 'description', 'picture'];
 
     // the fields not to consider
     // protected $guarded = [];

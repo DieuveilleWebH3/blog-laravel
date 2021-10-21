@@ -24,9 +24,10 @@ class PostStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|min:10',
+            'title' => 'required|string|min:3',
             'extrait' => 'required|string|min:25',
             'description' => 'required|string|min:100',
+            'picture' => 'required|image'
         ];
     }
 }

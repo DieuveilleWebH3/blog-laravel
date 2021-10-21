@@ -16,6 +16,9 @@
         @endif
 
         <p>{{$post -> description}}</p>
+
+
+        <a href="{{ route('articleShowUpdate', $post->id)}}">Update</a>
     </div>
 
 @endsection

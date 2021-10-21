@@ -9,36 +9,40 @@
 
         <h1>Ma liste d'articles</h1>
 
-        <ul>
+        <div>
 
             @foreach($posts as $post)
 
-                <li>
-                    {{-- <a href="articles/{{$post -> id}}"> --}}
-                    <a href="{{ route('articleDetail', $post -> id )}}">
-                        <h2>{{$post -> title}}</h2>
-                    </a>
-                    <p>{{$post -> extrait}}</p>
+                <div class="col-md-4">
+                    <div class="card">
+                        <a href="{{ route('articleDetail', $post -> id )}}">
+                            <img src="{{ asset("storage/$post->picture") }}" style="object-fit: cover; height: 200px;" class="card-img-top">
+                        </a>
 
-                    {{-- if the route is get , but that's not safe --}}
-                    {{-- <a href="{{ route('articleDelete', $post->id)}}" class="btn btn-danger">Remove</a> --}}
+                        <div class="card-body">
+                            {{-- <a href="articles/{{$post -> id}}"> --}}
+                            <a href="{{ route('articleDetail', $post -> id )}}">
+                                <h4 class="card-title">{{$post -> title}}</h4>
+                            </a>
+                            <p>{{$post -> extrait}}</p>
 
-                    <form method="post" action="{{ route('articleUpdate', $post->id)}}">
-                        @csrf
-                        @method('PUT')
-                        <button class="btn btn-warning">Update</button>
-                    </form>
+                            <div class="d-flex">
+                                {{-- if the route is get , but that's not safe --}}
+                                {{-- <a href="{{ route('articleDelete', $post->id)}}" class="btn btn-danger">Remove</a> --}}
 
-                    <form method="post" action="{{ route('articleDelete', $post->id)}}">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger">Remove</button>
-                    </form>
-                </li>
+                                <form method="post" action="{{ route('articleDelete', $post->id)}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger">Remove</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             @endforeach
 
-        </ul>
+        </div>
 
 @endsection
 

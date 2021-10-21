@@ -6,6 +6,7 @@ use App\Http\Requests\PostStoreRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -100,11 +101,25 @@ class PostController extends Controller
 
         $data = $request->validated();
 
+        $file = Storage::put('public', $data['picture']);
+
+        $data['picture'] = substr($file, 7);
+
         $post = Post::create($data);
 
         // dd($post);
 
         return redirect()->route('articleList');
+
+    }
+
+    //
+    public function showUpdate($id)
+    {
+        //
+        $post = Post::find($id);
+
+        return view('posts.update', compact('post'));
 
     }
 
