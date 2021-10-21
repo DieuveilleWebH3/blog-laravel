@@ -14,6 +14,9 @@ class Post extends Model
     // the fields to be used / modified
     protected $fillable = ['title', 'extrait', 'description', 'picture'];
 
-    // the fields not to consider
-    // protected $guarded = [];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'post', 'id');
+    }
 }
