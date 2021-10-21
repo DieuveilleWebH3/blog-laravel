@@ -21,8 +21,25 @@
 
         <p>{{$post -> description}}</p>
 
+        <div class="d-flex">
+            <a href="{{ route('articleShowUpdate', $post->id)}}">Update</a>
+        </div>
 
-        <a href="{{ route('articleShowUpdate', $post->id)}}">Update</a>
+        <h1>Comments</h1>
+
+
+        @if(sizeof($post->comments)>0)
+            <ul>
+                @foreach($post->comments as $comment)
+                    <li>
+                        {{$comment->content}}
+                    </li>
+
+                @endforeach
+            </ul>
+        @else
+            <p>There are no comments</p>
+        @endif
     </div>
 
 @endsection

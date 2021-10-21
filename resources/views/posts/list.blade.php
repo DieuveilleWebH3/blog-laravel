@@ -24,7 +24,12 @@
                             <a href="{{ route('articleDetail', $post -> id )}}">
                                 <h4 class="card-title">{{$post -> title}}</h4>
                             </a>
+
                             <p>{{$post -> extrait}}</p>
+
+                            {{-- <p>{{sizeof($post -> comments)}} comment (s)</p> --}}
+
+                            <p>{{($post->countComments())}} comment (s)</p>
 
                             <div class="d-flex">
                                 {{-- if the route is get , but that's not safe --}}

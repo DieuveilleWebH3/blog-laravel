@@ -19,4 +19,11 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class, 'post', 'id');
     }
+
+    public function countComments()
+    {
+        // return sizeof($this->comments);
+
+        return count($this->comments);
+    }
 }
