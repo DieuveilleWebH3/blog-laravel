@@ -12,7 +12,7 @@ class Comment extends Model
     protected $table = "comments";
 
     // the fields to be used / modified
-    protected $fillable = ['content'];
+    protected $fillable = ['content', 'post'];
 
     public function getPost()
     {

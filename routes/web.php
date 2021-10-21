@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,8 @@ Route::put('article/{id}/update/image', [PostController::class, 'updatePicture']
 
 Route::delete('/delete/{id}', [PostController::class, 'delete'])->name('articleDelete');
 
+
+Route::post('article/{postId}/comments', [CommentController::class, 'store'])->name('commentAdd');
 
 /*
 Route::get('/test', function () {

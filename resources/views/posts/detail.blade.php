@@ -40,6 +40,18 @@
         @else
             <p>There are no comments</p>
         @endif
+
+        <form method="post" action="{{route('commentAdd', $post->id)}}">
+            @csrf
+
+            <div class="form-group">
+                <label for="content">Add Comment</label>
+
+                <textarea id="content" name="content" class="form-control" required></textarea>
+            </div>
+
+            <button class="btn btn-danger">Comment</button>
+        </form>
     </div>
 
 @endsection
