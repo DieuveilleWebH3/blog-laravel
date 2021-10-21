@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostStoreRequest;
+use App\Http\Requests\PostUpdatePictureRequest;
+use App\Http\Requests\PostUpdateRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -124,10 +126,11 @@ class PostController extends Controller
     }
 
     //
-    public function update(PostStoreRequest $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
 
-        $data = $request->all();
+        // $data = $request->all();
+        $data = $request->validated();
 
         //
         $post = Post::find($id);
@@ -138,7 +141,43 @@ class PostController extends Controller
         // Method 2 to update
         // $post->$title = $data['title'];
 
-        return redirect()->route('articleList');
+        return redirect()->route('articleDetail', $id);
+
+    }
+
+    //
+    public function updatePicture(PostUpdatePictureRequest $request, $id)
+    {
+
+        $data = $request->validated();
+
+        //
+        $post = Post::find($id);
+
+        // Method 1 to update
+        $post->update($data);
+
+        //
+        if (Storage::exists("public/$post->picture")){
+            Storage::delete("public/$post->picture");
+        }
+
+        $file = Storage::put('public', $data['picture']);
+
+        $data['picture'] = substr($file, 7);
+
+        /*
+        // first way to update
+        $post = Post::update([
+            'picture'
+        ]);
+        */
+
+        // Second way to update
+        $post->picture = $data['picture'];
+        $post->save();
+
+        return redirect()->route('articleDetail', $id);
 
     }
 

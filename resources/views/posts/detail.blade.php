@@ -7,6 +7,10 @@
     </a>
 
     <div class="container">
+        <div class="card">
+            <img src="{{ asset("storage/$post->picture") }}" style="object-fit: cover; height: 200px;" class="card-img-top">
+        </div>
+
         <h1>{{$post -> title}}</h1>
 
         <p>{{$post -> extrait}}</p>

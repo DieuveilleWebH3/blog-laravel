@@ -35,6 +35,7 @@ Route::post('store', [PostController::class, 'store'])->name('articleStore');
 
 Route::get('article/{id}/update', [PostController::class, 'showUpdate'])->name('articleShowUpdate');
 Route::put('article/{id}/update', [PostController::class, 'update'])->name('articleUpdate');
+Route::put('article/{id}/update/image', [PostController::class, 'updatePicture'])->name('articleUpdatePicture');
 
 Route::delete('/delete/{id}', [PostController::class, 'delete'])->name('articleDelete');
 
