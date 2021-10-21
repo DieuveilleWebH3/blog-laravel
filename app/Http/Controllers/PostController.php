@@ -154,11 +154,8 @@ class PostController extends Controller
         //
         $post = Post::find($id);
 
-        // Method 1 to update
-        $post->update($data);
-
         //
-        if (Storage::exists("public/$post->picture")){
+        if(Storage::exists("public/$post->picture")){
             Storage::delete("public/$post->picture");
         }
 
@@ -167,7 +164,7 @@ class PostController extends Controller
         $data['picture'] = substr($file, 7);
 
         /*
-        // first way to update
+        // First way to update
         $post = Post::update([
             'picture'
         ]);
@@ -186,6 +183,11 @@ class PostController extends Controller
     {
         //
         $post = Post::find($id);
+
+        //
+        if(Storage::exists("public/$post->picture")){
+            Storage::delete("public/$post->picture");
+        }
 
         $post->delete();
 
