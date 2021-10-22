@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 
 @section('content')
-
     <div class="container">
         <h1> Hello Create a new blog Article</h1>
 
@@ -40,5 +39,4 @@
             </form>
         </div>
     </div>
-
 @endsection

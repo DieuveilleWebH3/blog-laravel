@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,51 +16,23 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/test2', function () {
-    var_dump(value('test'));
-    dd('test2');
-});
-
-Route::get('/test', [PostController::class, 'test']);
-
-Route::get('/articles', [PostController::class, 'index'])->name('articleList');
-
-# Route::get('/articles/{{$id}}/detail', [PostController::class, 'detail']);
+Route::get('/', [PostController::class, 'index'])->name('articleList');
 Route::get('/articles/{id}', [PostController::class, 'detail'])->name('articleDetail');
-
-Route::get('create', [PostController::class, 'create'])->name('articleCreate');
-Route::post('store', [PostController::class, 'store'])->name('articleStore');
-
+Route::get('articles/create', [PostController::class, 'create'])->name('articleCreate');
+Route::post('articles/store', [PostController::class, 'store'])->name('articleStore');
 Route::get('article/{id}/update', [PostController::class, 'showUpdate'])->name('articleShowUpdate');
-Route::put('article/{id}/update', [PostController::class, 'update'])->name('articleUpdate');
+Route::put('article/{id}/update_save', [PostController::class, 'update'])->name('articleUpdate');
 Route::put('article/{id}/update/image', [PostController::class, 'updatePicture'])->name('articleUpdatePicture');
-
-Route::delete('/delete/{id}', [PostController::class, 'delete'])->name('articleDelete');
+Route::delete('articles/delete/{id}', [PostController::class, 'delete'])->name('articleDelete');
 
 
 Route::post('article/{postId}/comments', [CommentController::class, 'store'])->name('commentAdd');
 Route::delete('comment/{id}', [CommentController::class, 'delete'])->name('commentDelete');
 
-/*
-Route::get('/test', function () {
-    // var_dump(value: 'test');
-    // dd(vars: 'test');
-});
 
-Route::get('/posts/{id}', function ($id) {
-    dd($id);
-});
 
-Route::get('/testing/{id?}', function ($id=0) {
-    dd($id);
-});
+Route::get('category/create', [CategoryController::class, 'create'])->name('categoryAdd');
+Route::post('store', [CategoryController::class, 'store'])->name('categoryStore');
+Route::delete('category/delete/{id}', [CategoryController::class, 'delete'])->name('categoryDelete');
 
-Route::get('/test2/{id}', function (\Illuminate\Http\Request  $request, $id) {
-    dd($request);
-});
-
-*/
