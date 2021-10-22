@@ -31,6 +31,12 @@
 
                             <p>{{($post->countComments())}} comment (s)</p>
 
+                            <div>
+                                @foreach($post->categories as $category)
+                                    <span>{{$category->name}}</span>
+                                @endforeach
+                            </div>
+
                             <div class="d-flex">
                                 {{-- if the route is get , but that's not safe --}}
                                 {{-- <a href="{{ route('articleDelete', $post->id)}}" class="btn btn-danger">Remove</a> --}}
