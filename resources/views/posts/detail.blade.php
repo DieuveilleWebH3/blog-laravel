@@ -74,7 +74,7 @@
                 <textarea id="content" name="content" class="form-control" required></textarea>
             </div>
 
-            <button class="btn btn-danger">Comment</button>
+            <button class="btn btn-primary">Comment</button>
         </form>
     </div>
 

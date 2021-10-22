@@ -19,7 +19,7 @@ use App\Http\Controllers\CategoryController;
 
 Route::get('/', [PostController::class, 'index'])->name('articleList');
 Route::get('/articles/{id}', [PostController::class, 'detail'])->name('articleDetail');
-Route::get('articles/create', [PostController::class, 'create'])->name('articleCreate');
+Route::get('/create', [PostController::class, 'create'])->name('articleCreate');
 Route::post('articles/store', [PostController::class, 'store'])->name('articleStore');
 Route::get('article/{id}/update', [PostController::class, 'showUpdate'])->name('articleShowUpdate');
 Route::put('article/{id}/update_save', [PostController::class, 'update'])->name('articleUpdate');
@@ -33,6 +33,7 @@ Route::delete('comment/{id}', [CommentController::class, 'delete'])->name('comme
 
 
 Route::get('category/create', [CategoryController::class, 'create'])->name('categoryAdd');
-Route::post('store', [CategoryController::class, 'store'])->name('categoryStore');
+Route::post('category/store', [CategoryController::class, 'store'])->name('categoryStore');
 Route::delete('category/delete/{id}', [CategoryController::class, 'delete'])->name('categoryDelete');
+Route::put('category/{id}/update', [CategoryController::class, 'update'])->name('categoryUpdate');
 
