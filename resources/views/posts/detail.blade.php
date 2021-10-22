@@ -32,7 +32,31 @@
             <ul>
                 @foreach($post->comments as $comment)
                     <li>
-                        {{$comment->content}}
+                        {{--
+                        <div class="col-md-6">
+                            <span>{{$comment->content}}</span>
+
+                             can't work because link request get and not delete method
+                             <span><a href="{{route('commentDelete', $comment->id)}}"><i class="fa fa-trash" style="color: red;" aria-hidden="true"></i></a></span>
+                        </div>
+                        --}}
+
+                        <div class="row">
+                            <div class="col-sm">
+                                {{$comment->content}}
+                            </div>
+
+                            <div class="col-sm">
+                                <form method="post" action="{{route('commentDelete', $comment->id)}}">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button class="btn btn-sm" type="submit">
+                                        <i class="fa fa-trash" style="color: red;" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </li>
 
                 @endforeach

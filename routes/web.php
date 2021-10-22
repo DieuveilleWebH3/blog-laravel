@@ -42,6 +42,7 @@ Route::delete('/delete/{id}', [PostController::class, 'delete'])->name('articleD
 
 
 Route::post('article/{postId}/comments', [CommentController::class, 'store'])->name('commentAdd');
+Route::delete('comment/{id}', [CommentController::class, 'delete'])->name('commentDelete');
 
 /*
 Route::get('/test', function () {
