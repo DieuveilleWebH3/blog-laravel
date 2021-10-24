@@ -37,9 +37,50 @@
                         <textarea rows="5" id="description" name="description" class="form-control" required>{{old('description', $post->description)}}</textarea>
                     </div>
 
+                    <div class="form-group multiple-form-group">
+                        <div class="selectBox" onclick="showCheckboxes()">
+                            <select class="form-control">
+                                <option> Choose the Category(ies)*</option>
+                            </select>
+                            <div class="overSelect">
+
+                            </div>
+                        </div>
+
+                        <div id="checkBoxes">
+                            @foreach($categories as $category)
+                                <label for="{{$category->id}}">
+                                    <input type="checkbox"
+                                           value="{{$category->id}}" id="{{$category->id}}"
+                                           name="category_list[{{$category->id}}]"
+                                           @if($post->categories->contains('id', $category->id)) checked @endif
+                                    >
+                                    {{$category->name}}
+                                </label>
+                            @endforeach
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Update blog</button>
                 </form>
             </div>
+
+            <script>
+                var show = true;
+
+                function showCheckboxes() {
+                    var checkboxes =
+                        document.getElementById("checkBoxes");
+
+                    if (show) {
+                        checkboxes.style.display = "block";
+                        show = false;
+                    } else {
+                        checkboxes.style.display = "none";
+                        show = true;
+                    }
+                }
+            </script>
 
             <div class="col-md-6">
                 <div class="card">

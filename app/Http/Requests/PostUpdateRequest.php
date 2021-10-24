@@ -26,7 +26,8 @@ class PostUpdateRequest extends FormRequest
         return [
             'title' => 'required|string|min:3',
             'extrait' => 'required|string|min:25',
-            'description' => 'required|string|min:100'
+            'description' => 'required|string|min:100',
+            'category_list' => 'required'
         ];
     }
 }

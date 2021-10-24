@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdatePictureRequest;
 use App\Http\Requests\PostUpdateRequest;
+
 use App\Models\Post;
+use App\Models\Category;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -39,7 +42,9 @@ class PostController extends Controller
     //
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+
+        return view('posts.create', compact('categories'));
     }
 
     //
@@ -54,8 +59,18 @@ class PostController extends Controller
 
         $post = Post::create($data);
 
-        return redirect()->route('articleList');
+        /*
+            // check if one category has been selected
+            // (for me it's required so I comment this part)
+            if(!empty($data['category_list']))
+            {
+                $post->categories()->attach($data['category_list']);
+            }
+        */
 
+        $post->categories()->attach($data['category_list']);
+
+        return redirect()->route('articleList');
     }
 
     //
@@ -64,7 +79,9 @@ class PostController extends Controller
         //
         $post = Post::find($id);
 
-        return view('posts.update', compact('post'));
+        $categories = Category::all();
+
+        return view('posts.update', compact(['post', 'categories']));
 
     }
 
@@ -75,14 +92,28 @@ class PostController extends Controller
         // $data = $request->all();
         $data = $request->validated();
 
+        // dd($data);
+
         //
         $post = Post::find($id);
 
         // Method 1 to update
         $post->update($data);
 
-        // Method 2 to update
-        // $post->$title = $data['title'];
+        // we detach all the categories
+        // in case one box was unchecked so it is taken into account
+        $post->categories()->detach();
+
+        /*
+            // check if one category has been selected
+            // (for me it's required so I comment this part)
+            if(!empty($data['category_list']))
+            {
+                $post->categories()->attach($data['category_list']);
+            }
+        */
+
+        $post->categories()->attach($data['category_list']);
 
         return redirect()->route('articleDetail', $id);
 
