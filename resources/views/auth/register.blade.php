@@ -1,3 +1,56 @@
+@extends('layouts.layout')
+
+@section('content')
+    <div class="container">
+        <h1> Register </h1>
+
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                <p style="color: red">{{$error}}</p>
+            @endforeach
+        @endif
+
+        <form method="post" action="{{ route('register') }}">
+        @csrf
+
+            <!-- First Name -->
+            <div class="form-group">
+                <label for="firstname"> First Name </label>
+                <input type="text" id="firstname" name="firstname" class="form-control" required>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-group">
+                <label for="lastname"> Last Name </label>
+                <input type="text" id="lastname" name="lastname" class="form-control" required>
+            </div>
+
+            <!-- Email Address -->
+            <div class="form-group">
+                <label for="email"> Email </label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password"> Password </label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+
+            <!-- Confirl Password -->
+            <div class="form-group">
+                <label for="password_confirmation"> Confirm Password </label>
+                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary"> Register </button>
+        </form>
+    </div>
+
+@endsection
+
+
+{{--
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
@@ -57,3 +110,6 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
+
+--}}
+

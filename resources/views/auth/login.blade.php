@@ -5,14 +5,20 @@
     <div class="container">
         <h1> Login </h1>
 
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                <p style="color: red">{{$error}}</p>
+            @endforeach
+        @endif
+
         <form method="post" action="{{ route('login') }}">
             @csrf
 
             <!-- Email Address -->
-                <div class="form-group">
-                    <label for="email"> Email </label>
-                    <input type="email" id="email" name="email" class="form-control" required>
-                </div>
+            <div class="form-group">
+                <label for="email"> Email </label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
 
             <!-- Password -->
             <div class="form-group">
