@@ -17,6 +17,17 @@ use App\Http\Controllers\CategoryController;
 */
 
 
+/*
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+*/
+
+
 Route::get('/', [PostController::class, 'index'])->name('articleList');
 Route::get('/articles/{id}', [PostController::class, 'detail'])->name('articleDetail');
 Route::get('/create', [PostController::class, 'create'])->name('articleCreate');
@@ -36,4 +47,9 @@ Route::get('category/create', [CategoryController::class, 'create'])->name('cate
 Route::post('category/store', [CategoryController::class, 'store'])->name('categoryStore');
 Route::delete('category/delete/{id}', [CategoryController::class, 'delete'])->name('categoryDelete');
 Route::put('category/{id}/update', [CategoryController::class, 'update'])->name('categoryUpdate');
+
+
+
+require __DIR__.'/auth.php';
+
 
