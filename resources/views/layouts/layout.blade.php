@@ -62,6 +62,43 @@
     </head>
 
     <body>
+        <nav class="nav navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"> Blog </a>
+                <button type="button"
+                        class="navbar-toggler"
+                        data-bs-toggler="collapse"
+                        data-bs-target="#navbar">
+                    <span class="navbar-toggler-icon">
+
+                    </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('articleList')}}"> Articles </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('categoryAdd')}}"> Categories </a>
+                        </li>
+
+                        @if(\Illuminate\Support\Facades\Auth::check())
+                            <li class="nav-item">
+                                {{\Illuminate\Support\Facades\Auth::user()->name}}
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('login')}}"> Connexion </a>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+
         @yield('content')
 
         @yield('javascript')
