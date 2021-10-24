@@ -86,7 +86,8 @@
 
                         @if(\Illuminate\Support\Facades\Auth::check())
                             <li class="nav-item">
-                                {{\Illuminate\Support\Facades\Auth::user()->name}}
+                                {{\Illuminate\Support\Facades\Auth::user()->firstname}}
+                                {{\Illuminate\Support\Facades\Auth::user()->lasttname}}
                             </li>
                         @else
                             <li class="nav-item">

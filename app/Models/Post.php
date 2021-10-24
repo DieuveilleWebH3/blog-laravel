@@ -12,7 +12,7 @@ class Post extends Model
     protected $table = "posts";
 
     // the fields to be used / modified
-    protected $fillable = ['title', 'extrait', 'description', 'picture'];
+    protected $fillable = ['title', 'extrait', 'description', 'picture', 'user_id'];
 
 
     public function comments()
@@ -30,5 +30,10 @@ class Post extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'posts_categories', 'post', 'category');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 }

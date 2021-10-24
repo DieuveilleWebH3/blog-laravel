@@ -28,7 +28,8 @@ class PostStoreRequest extends FormRequest
             'extrait' => 'required|string|min:25',
             'description' => 'required|string|min:100',
             'picture' => 'required|image',
-            'category_list' => 'required'
+            'category_list' => 'required',
+            // 'user_id' => 'nullable'
         ];
     }
 }

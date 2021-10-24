@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Models\Category;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -57,6 +58,10 @@ class PostController extends Controller
 
         $data['picture'] = substr($file, 7);
 
+        $data['user_id'] = auth()->user()->id;
+
+        // dd($data);
+        //
         $post = Post::create($data);
 
         /*
@@ -162,6 +167,8 @@ class PostController extends Controller
         if(Storage::exists("public/$post->picture")){
             Storage::delete("public/$post->picture");
         }
+
+        $post->categories->detach();
 
         $post->delete();
 

@@ -30,8 +30,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/', [PostController::class, 'index'])->name('articleList');
 Route::get('/articles/{id}', [PostController::class, 'detail'])->name('articleDetail');
-Route::get('/create', [PostController::class, 'create'])->name('articleCreate');
-Route::post('articles/store', [PostController::class, 'store'])->name('articleStore');
+Route::get('/create', [PostController::class, 'create'])->name('articleCreate')->middleware('auth');
+Route::post('articles/store', [PostController::class, 'store'])->name('articleStore')->middleware('auth');
 Route::get('article/{id}/update', [PostController::class, 'showUpdate'])->name('articleShowUpdate');
 Route::put('article/{id}/update_save', [PostController::class, 'update'])->name('articleUpdate');
 Route::put('article/{id}/update/image', [PostController::class, 'updatePicture'])->name('articleUpdatePicture');
