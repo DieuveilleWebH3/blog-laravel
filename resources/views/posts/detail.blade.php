@@ -21,9 +21,11 @@
 
         <p>{{$post -> description}}</p>
 
-        <div class="d-flex">
-            <a href="{{ route('articleShowUpdate', $post->id)}}">Update</a>
-        </div>
+        @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->id === $post->user_id)
+            <div class="d-flex">
+                <a href="{{ route('articleShowUpdate', $post->id)}}">Update</a>
+            </div>
+        @endif
 
         <h1>Comments</h1>
 
